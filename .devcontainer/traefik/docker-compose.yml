@@ -1,0 +1,26 @@
+services:
+  traefik:
+    image: traefik:v3.6.4
+    ports:
+      - 80:80
+      - 443:443
+      # - 8080:8080
+    labels:
+      # Accessing dashboard via traefik
+      - traefik.enable=true
+      - traefik.http.services.traefik.loadBalancer.server.port=8080
+      - traefik.http.routers.traefik.rule=Host(`traefik.localhost`) 
+      # && PathPrefix(`/dashboard/`) || PathPrefix(`/api/`)
+      - traefik.http.routers.traefik.service=api@internal
+      # - traefik.http.middlewares.traefik-stripprefix.stripprefix.prefixes=/dashboard
+      # - traefik.http.routers.traefik.middlewares=traefik-stripprefix@docker
+      - traefik.http.routers.traefik.entrypoints=web
+
+      # - traefik.http.routers.traefik.rule=Host(`traefik.<YOUR_BASE_URL>`)
+      # - traefik.http.routers.traefik.tls=true
+      # - traefik.http.routers.traefik.tls.certresolver=production
+      # - traefik.http.routers.traefik.middlewares=auth-traefik
+      # - traefik.http.middlewares.auth-traefik.basicauth.usersfile=/root/.config/.htpasswd
+    volumes:
+      - ./traefik.yml:/etc/traefik/traefik.yml:bind
+      - /var/run/docker.sock:/var/run/docker.sock 
