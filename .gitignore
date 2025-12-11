@@ -1,1 +1,3 @@
 .python
+.mypy_cache
+.venv

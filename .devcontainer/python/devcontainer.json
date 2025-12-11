@@ -2,10 +2,10 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker-compose
 {
 	"name": "python",
-	"dockerComposeFile": "docker-compose.yml",
+	"dockerComposeFile": "../docker-compose.yml",
 	"service": "python",
 	"overrideCommand": true,
-    // "runServices": ["frontend", "traefik"],
+    "runServices": ["traefik"],
 	"workspaceFolder": "/Projects/skill-master",
     "remoteUser": "ubuntu",
     "updateRemoteUserUID": true,
