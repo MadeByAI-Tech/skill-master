@@ -35,7 +35,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "bash /Projects/.devcontainer/bki/setup.sh "
+	"postCreateCommand": "bash /Projects/skill-master/.devcontainer/python/start.sh "
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
