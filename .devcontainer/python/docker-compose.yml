@@ -7,7 +7,7 @@ services:
       args:
         - BUILD_VERSION=DEV
         - WORKDIR=/Projects/skill-master
-    platform: linux/amd64
+    # platform: linux/amd64
     labels:
       # Accessing dashboard via traefik
       - traefik.enable=true

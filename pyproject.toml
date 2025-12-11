@@ -9,3 +9,8 @@ dependencies = [
     "jinja2>=3.1.6",
     "pydantic>=2.12.5",
 ]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+]
