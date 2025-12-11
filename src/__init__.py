@@ -1,19 +1,12 @@
-from typing import Union
-
 from fastapi import FastAPI
-from pydantic import BaseModel
+from src.item import router as item_router
+from src.web  import router as  web_router
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+# @app.get("/")
+# def read_root():
+#     return {"Hello": "World Na Ja"}
 
-class Item(BaseModel):
-    item_id: int
-    q: str|None
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None) -> Item:
-    item = Item(item_id=item_id, q=q)
-    return item
+app.include_router(item_router)
+app.include_router(web_router)
