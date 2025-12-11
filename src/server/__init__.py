@@ -1,9 +1,10 @@
 from fastapi import FastAPI
-from src.item import router as item_router
-from src.web  import router as  web_router
+from server.item import router as item_router
+from server.web  import router as  web_router
+from pipeline.processing_job import extract
 app = FastAPI()
 
-
+extract("sdfsd")
 # @app.get("/")
 # def read_root():
 #     return {"Hello": "World Na Ja"}

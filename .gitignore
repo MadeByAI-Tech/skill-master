@@ -1,3 +1,5 @@
 .python
 .mypy_cache
 .venv
+.pytest_cache
+src/skill_master.egg-info

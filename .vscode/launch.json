@@ -10,10 +10,11 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "src:app",
+                "server:app",
                 "--host=0.0.0.0",
                 "--reload"
             ],
+            "cwd": "${workspaceFolder}/src",
             "jinja": true
         },
         {
