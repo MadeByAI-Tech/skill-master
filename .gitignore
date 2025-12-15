@@ -3,4 +3,5 @@
 .venv
 .pytest_cache
 src/skill_master.egg-info
-.devcontainer/kafka/data
+**/data/*
+!.keeps
