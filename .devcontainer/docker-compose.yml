@@ -1,3 +1,4 @@
 include:
   - python/docker-compose.yml
+  - kafka/docker-compose.yml
   - traefik/docker-compose.yml
