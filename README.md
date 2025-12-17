@@ -2,7 +2,6 @@
 
 - [SKILL-MASTER:](#skill-master)
   - [Developer](#developer)
-    - [Trigger](#trigger)
   - [Function](#function)
   - [Appendix](#appendix)
 
@@ -18,6 +17,10 @@ To spin up the development environment, use <kbd>cmd + shift + P</kbd> to open c
 
 To run debug, use <kbd>F5</kbd> to start debugging.
 Make sure to select `Functions Framework` option in the `Run and Debug` sidebar (<kbd>shift + CMD + D</kbd>).
+
+You can access the function at the following URL:
+
+http://localhost:8000
 
 **build and run**
 
@@ -40,20 +43,17 @@ Commands:
 - build: will build the docker image for Cloud Run using `pack-cli`.
 - run: will run the docker image locally using `docker run`.
 
+You can access the function at the following URL:
 
-### Trigger
-
-The function is triggered using HTTP request.
-For development, you can use the following command to test the function:
-
-http://localhost:8000
+http://localhost:8001
 
 ## Function
 
 The current design of the function will invoke a pipeline.
 To run only one step, you can specify the step name in the get parameter `function`.
 
-http://localhost:8000?function=<step_name>
+- Debug: http://localhost:8000?function=<step_name>
+- Run: http://localhost:8001?function=<step_name>
 
 ## Appendix 
 
