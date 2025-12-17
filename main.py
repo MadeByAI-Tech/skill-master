@@ -22,7 +22,7 @@ def build():
 
 @click.command()
 def run():
-    command = f"docker run -it -ePORT=8000 -p8000:8080 {image_name}"
+    command = f"docker run -it --rm -ePORT=8000 -p8000:8080 {image_name}"
     subprocess.run(command, shell=True, check=True)
 
 cli.add_command(build)
