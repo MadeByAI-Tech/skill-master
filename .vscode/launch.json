@@ -5,23 +5,40 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: FastAPI",
+            "name": "Function Framework",
             "type": "debugpy",
             "request": "launch",
-            "module": "uvicorn",
+            "module": "functions_framework",
             "args": [
-                "server:app",
-                "--host=0.0.0.0",
-                "--reload"
+                "--target",
+                "main",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000",
+                "--debug",
+
             ],
             "cwd": "${workspaceFolder}/src",
-            "jinja": true
         },
         {
-            "name": "Python Debugger: Python File",
+            "name": "Python Debugger: Flask",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}"
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "src/server/__init__.py",
+                "FLASK_DEBUG": "1",
+                "FLASK_RUN_HOST": "0.0.0.0",
+                "FLASK_RUN_PORT": "8000"
+            },
+            "args": [
+                "run",
+                "--no-debugger",
+                "--no-reload"
+            ],
+            "jinja": true,
+            "autoStartBrowser": false
         }
     ]
 }

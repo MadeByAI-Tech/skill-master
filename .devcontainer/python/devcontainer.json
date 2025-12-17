@@ -5,7 +5,7 @@
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "python",
 	"overrideCommand": true,
-    "runServices": ["traefik"],
+    // "runServices": ["traefik"],
 	"workspaceFolder": "/Projects/skill-master",
     "remoteUser": "ubuntu",
     "updateRemoteUserUID": true,
@@ -33,7 +33,7 @@
 		}
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [8000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "bash /Projects/skill-master/.devcontainer/python/start.sh "
