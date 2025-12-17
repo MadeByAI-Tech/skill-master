@@ -8,15 +8,17 @@ services:
         - BUILD_VERSION=DEV
         - WORKDIR=/Projects/skill-master
     # platform: linux/amd64
-    labels:
+    # labels:
       # Accessing dashboard via traefik
-      - traefik.enable=true
-      - traefik.http.services.python.loadBalancer.server.port=8000
-      - traefik.http.routers.python.rule=Host(`python.localhost`)
-      - traefik.http.routers.python.service=python@docker
+      # - traefik.enable=true
+      # - traefik.http.services.python.loadBalancer.server.port=8000
+      # - traefik.http.routers.python.rule=Host(`python.localhost`)
+      # - traefik.http.routers.python.service=python@docker
       # - traefik.http.middlewares.python-stripprefix.stripprefix.prefixes=/python
       # - traefik.http.routers.python.middlewares=python-stripprefix@docker
-      - traefik.http.routers.python.entrypoints=web
+      # - traefik.http.routers.python.entrypoints=web
+    ports:
+      - 8000:8000
     volumes:
       - ../../:/Projects/skill-master
     # command: ["uv", "run", "uvicorn", "src:app", "--host=0.0.0.0", "--port=8000", "--workers=2", "--reload"]

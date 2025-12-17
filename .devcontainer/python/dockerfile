@@ -1,3 +1,12 @@
+FROM ubuntu:24.04 AS pack
+
+RUN apt update
+# PACK CLI: https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/
+RUN apt install -y software-properties-common \
+    && apt-add-repository ppa:cncf-buildpacks/pack-cli \
+    && apt update \
+    && apt install -y pack-cli
+
 FROM ubuntu:24.04
 ARG BUILD_VERSION
 ENV BUILD_VERSION=$BUILD_VERSION
@@ -14,8 +23,8 @@ ARG USER_GID=$USER_UID
 #     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 #
 # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
-RUN apt-get update \
-&& apt-get install -y sudo \
+RUN apt update \
+&& apt install -y sudo \
 && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
 && chmod 0440 /etc/sudoers.d/$USERNAME
 
@@ -34,6 +43,8 @@ RUN apt install -y --no-install-recommends iputils-ping vim
 
 RUN apt clean
 RUN rm -rf /var/lib/apt/lists/*
+
+COPY --from=pack /usr/bin/pack /usr/bin/pack
 
 # uv setup 
 COPY --from=ghcr.io/astral-sh/uv:0.9.17 /uv /uvx /bin/
@@ -60,6 +71,7 @@ WORKDIR ${WORKDIR}
 # COPY ./src  src
 # COPY ./README.md README.md
 # Reset the entrypoint, don't invoke `uv`
+EXPOSE 8000
 ENTRYPOINT []
 CMD ["sleep", "infinity"]
 # CMD [ "uv", "run", "uvicorn", "src:app", "--host=0.0.0.0", "--port=8000", "--workers=2"]
