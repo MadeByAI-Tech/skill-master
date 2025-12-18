@@ -1,5 +1,10 @@
 import flask
 import functions_framework
+from src import llm # type: ignore
+import os
+
+print(f"MODE={os.environ['MODE']}")
+
 
 @functions_framework.http # type: ignore
 def main(request: flask.Request) -> flask.typing.ResponseReturnValue: # type: ignore
