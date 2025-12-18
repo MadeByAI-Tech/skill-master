@@ -10,8 +10,20 @@ It is built for running in the Google Cloud Run and Cloud Run Function environme
 
 ## Developer
 
+
+
+
 The repository is developed for VScode and devcontainer.
 To spin up the development environment, use <kbd>cmd + shift + P</kbd> to open command palette and run `Dev Containers: Reopen in Container`.
+
+**Prerequisites**
+
+Before you start devcontainer, you must provide `openai` API key as a file in `.devcontainer/python/.secrets/openai`.
+
+```txt
+sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 
 **Debug**
 

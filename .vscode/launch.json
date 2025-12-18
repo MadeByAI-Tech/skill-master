@@ -20,6 +20,7 @@
 
             ],
             "cwd": "${workspaceFolder}/src",
+            "envFile": "${workspaceFolder}/.envfiles/dev.env"
         },
         {
             "name": "Python Debugger: Flask",
@@ -38,6 +39,7 @@
                 "--no-reload"
             ],
             "jinja": true,
+            "envFile": "${workspaceFolder}/.envfiles/dev.env",
             "autoStartBrowser": false
         }
     ]
