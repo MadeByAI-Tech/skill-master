@@ -5,10 +5,6 @@ from google.cloud.bigquery import QueryJobConfig
 
 import os
 
-# BQ_HOST=bigquery
-# BQ_PORT=9050
-# BQ_PROJECT=skill-master
-# BQ_DATASET=dev
 BQ_HOST = os.environ["BQ_HOST"]
 BQ_PORT = os.environ["BQ_PORT"]
 BQ_PROJECT = os.environ["BQ_PROJECT"]
