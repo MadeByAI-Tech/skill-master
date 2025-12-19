@@ -1,0 +1,1 @@
+from models.JobPost import JobPost # type: ignore
