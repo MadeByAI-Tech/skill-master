@@ -1,0 +1,8 @@
+services:
+  bigquery:
+    image: ghcr.io/goccy/bigquery-emulator:latest
+    platform: linux/amd64
+    command: --project=skill-master --log-level=debug --database=/data/database
+    volumes:
+        - ../../:/Projects/skill-master
+        - ./data:/data

@@ -5,7 +5,7 @@
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "python",
 	"overrideCommand": true,
-    // "runServices": ["traefik"],
+    "runServices": ["bigquery"],
 	"workspaceFolder": "/Projects/skill-master",
     "remoteUser": "ubuntu",
     "updateRemoteUserUID": true,
@@ -16,8 +16,17 @@
 	},
 
 	"features": {
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
-		"ghcr.io/devcontainers/features/github-cli:1": {}
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"moby": true,
+			"installDockerBuildx": true,
+			"installDockerComposeSwitch": true,
+			"version": "latest",
+			"dockerDashComposeVersion": "none"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"installDirectlyFromGitHubRelease": true,
+			"version": "latest"
+		}
 	},
 	"customizations": {
 		"vscode": {
