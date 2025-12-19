@@ -69,4 +69,5 @@ To run only one step, you can specify the step name in the get parameter `functi
 
 ## Appendix 
 
-https://github.com/goccy/bigquery-emulator
+- https://github.com/googlecloudplatform/functions-framework-python
+- https://github.com/goccy/bigquery-emulator
