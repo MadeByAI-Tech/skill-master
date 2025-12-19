@@ -1,5 +1,5 @@
 from pydantic import BaseModel, field_validator
-from datetime import datetime
+from datetime import datetime, date
 from google.cloud import bigquery
 from typing import Any
 import json
@@ -7,6 +7,11 @@ import json
 class JobPost(BaseModel):
     job_id: str
     url: str
+    extraction_date: date
+    job_title: str
+    company: str
+    location: str
+    job_function: str
     work_type: str
     salary: str
     description: str
@@ -25,13 +30,18 @@ class JobPost(BaseModel):
     @classmethod
     def get_schema(cls):
         schema = [
-            bigquery.SchemaField("job_id",     "STRING",    mode="REQUIRED"),
-            bigquery.SchemaField("url",        "STRING",    mode="REQUIRED"),
-            bigquery.SchemaField("work_type",  "STRING",    mode="REQUIRED"),
-            bigquery.SchemaField("salary",     "STRING",    mode="REQUIRED"),
-            bigquery.SchemaField("description","STRING",    mode="REQUIRED"),
-            bigquery.SchemaField("posted_text","STRING",    mode="REQUIRED"),
-            bigquery.SchemaField("postedAt",   "TIMESTAMP", mode="REQUIRED"),
+            bigquery.SchemaField("job_id",          "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("url",             "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("extraction_date", "DATE",      mode="REQUIRED"),
+            bigquery.SchemaField("job_title",       "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("company",         "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("location",        "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("job_function",    "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("work_type",       "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("salary",          "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("description",     "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("posted_text",     "STRING",    mode="REQUIRED"),
+            bigquery.SchemaField("postedAt",        "TIMESTAMP", mode="REQUIRED"),
         ]
         return schema
 
@@ -62,6 +72,11 @@ class JobPost(BaseModel):
             job_post = JobPost(
                 job_id = row["job_id"],
                 url = row["url"],
+                extraction_date = row["extraction_date"],
+                job_title = row["job_title"],
+                company = row["company"],
+                location = row["location"],
+                job_function = row["job_function"],
                 work_type = row["work_type"],
                 salary = row["salary"],
                 description = row["description"],
