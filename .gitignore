@@ -7,3 +7,4 @@ src/skill_master.egg-info
 **/data/*
 **/.secrets/*
 !.keeps
+.DS_Store
