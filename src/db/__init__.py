@@ -24,8 +24,12 @@ dataset_id = f"{_client.project}.{BQ_DATASET}"
 
 def get_dataset() -> bigquery.Dataset:
     dataset = bigquery.Dataset(dataset_id)
-    dataset = _client.create_dataset(dataset, timeout=30, exists_ok=True)  # Make an API request.
-    # print("Created dataset {}.{}".format(_client.project, dataset.dataset_id))
+    try:
+        dataset = _client.get_dataset(dataset_id)
+        print("Dataset already exists")
+    except Exception:
+        print("Dataset not found: creating...")
+        dataset = _client.create_dataset(dataset, exists_ok=True)
     return dataset
 
 def get_table(table_name: str) -> bigquery.Table:

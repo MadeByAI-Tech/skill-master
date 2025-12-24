@@ -1,7 +1,8 @@
 import flask
 import functions_framework
-from src import llm # type: ignore
+import llm # type: ignore
 import os
+from pipeline.processing_job import job_post_extraction_pipeline
 
 print(f"MODE={os.environ['MODE']}")
 
@@ -12,7 +13,7 @@ def main(request: flask.Request) -> flask.typing.ResponseReturnValue: # type: ig
     if(function=="greet"):
         return greet()
     else:
-        return starting_point()
+        return job_post_extraction_pipeline()
 
 def starting_point():
     result:str = "" # type: ignore
