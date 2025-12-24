@@ -9,6 +9,20 @@ def extract_all_components(
         job_function: str,
         job_description: str,
         ) -> dict[str, Any]:
+    
+    """
+    Pipeline to extract job information using LLM
+
+    - Sends job detail to LLM using `system_prompt`
+    - Parses JSON response and do processing which includes:
+        - Clean and validate `job_level`
+        - Normalize skill titles
+        - Ensure valid skill types
+        - Truncate long evidence fields
+    - Returns:
+        dict[str, Any]: Structured extraction result containing:
+        job_title_cleaned, job_level, skills, cwf_items, etc.
+    """
 
     system_prompt = MASTER_SYSTEM_PROMPT   # defined earlier
     user_prompt   = f"""
