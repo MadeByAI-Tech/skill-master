@@ -25,7 +25,7 @@ def job_post_extraction_pipeline():
     dataset_id = dataset.dataset_id
     print("=== DONE:    get_dataset()", flush=True)
 
-    # Source and destinatiom table
+    # Source and destination table
     JOBPOST_TABLE = f"{client.project}.{dataset_id}.JobPosts"
     EXTRACTED_TABLE = f"{dataset_id}.JobPostExtracted"
 
@@ -80,6 +80,3 @@ def job_post_extraction_pipeline():
     else:
         print("Error inserting data:", errors)
         return "404 ERROR"
-
-def extract(work:str)->str:
-    return f"{work}-extracted"
