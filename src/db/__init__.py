@@ -1,26 +1,32 @@
 from google.api_core.client_options import ClientOptions
 from google.auth.credentials import AnonymousCredentials
 from google.cloud import bigquery
-from google.cloud.bigquery import QueryJobConfig
 
 import os
 
-BQ_HOST = os.environ["BQ_HOST"]
-BQ_PORT = os.environ["BQ_PORT"]
 BQ_PROJECT = os.environ["BQ_PROJECT"]
 BQ_DATASET = os.environ["BQ_DATASET"]
 
 CREDENTIAL = AnonymousCredentials() 
-if os.environ["MODE"] != "dev":
-    raise NotImplementedError("Only dev mode is supported now in bigquery module.")
+_client: bigquery.Client
+dataset_id: str
 
-_client_options = ClientOptions(api_endpoint=f"http://{BQ_HOST}:{BQ_PORT}")
-_client = bigquery.Client(
-  project=BQ_PROJECT,
-  client_options=_client_options,
-  credentials=CREDENTIAL,
-)
-dataset_id = f"{_client.project}.{BQ_DATASET}"
+if os.environ["MODE"] == "dev":
+    BQ_HOST = os.environ["BQ_HOST"]
+    BQ_PORT = os.environ["BQ_PORT"]
+    _client_options = ClientOptions(api_endpoint=f"http://{BQ_HOST}:{BQ_PORT}")
+    _client = bigquery.Client(
+    project=BQ_PROJECT,
+    client_options=_client_options,
+    credentials=CREDENTIAL,
+    )
+    dataset_id = f"{_client.project}.{BQ_DATASET}"
+elif os.environ["MODE"] == "staging":
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=os.environ["BQ_SA_FROM"]
+    dataset_id = f"{BQ_PROJECT}.{BQ_DATASET}"
+else:
+    raise NotImplementedError(f"MODE={os.environ['MODE']} not implemented")
+
 
 def get_dataset() -> bigquery.Dataset:
     dataset = bigquery.Dataset(dataset_id)

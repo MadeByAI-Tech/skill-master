@@ -23,8 +23,11 @@ services:
       - ../../:/Projects/skill-master
     secrets:
       - openai
+      - staging-bigquery
     # command: ["uv", "run", "uvicorn", "src:app", "--host=0.0.0.0", "--port=8000", "--workers=2", "--reload"]
 
 secrets:
   openai:
     file: .secrets/openai
+  staging-bigquery:
+    file: .secrets/skilllane-ai-sandbox-f50740dfad9c.json
