@@ -1,0 +1,15 @@
+"1_job_post_extraction.ipynb" = ไฟล์สำหรับ extract ข้อมูลจาก job post โดยข้อมูลที่เรา extract จะมี skill set, cwf set, clean job title, job level
+
+"2_jobpost_management.ipynb" = ไฟล์สำหรับทำ normalize ของ parameter แต่ละตัว เพื่อให้ได้ data reference
+
+"title_normalization.py" = ไฟล์สำหรับทำ normalize ของ job title, skill, cwf ซึ่งไฟล์นี้ถูกเรียกใน "2_jobpost_management.ipynb"
+
+llm_review_helper_simple.py = ไฟล์สำหรับพิจารณาขั้นตอนสุดท้ายของการ normalize job title โดยใช้ LLM ซึ่งไฟล์นี้ถูกเรียกใน "title_normalization.py"
+
+"skills_llm1_pl_builder.py" = ไฟล์สำหรับสร้าง 6 proficiency level ของแต่ละ skill title norm ซึ่งไฟล์นี้ถูกเรียกใน "2_jobpost_management.ipynb"
+
+"skills_llm2_pl_assigner.py" = หลังจากเราได้ 6 pl ของแต่ละ skill norm เราจะใช้ไฟล์นี้สำหรับ assign ค่า pl สำหรับแต่ละ skill raw ของแต่ละ job post ซึ่งไฟล์นี้ถูกเรียกใน "2_jobpost_management.ipynb"
+
+"standard_jd_generator.py" = ไฟล์สำหรับสร้าง description หลังจากเราได้ standardization ของ job title, skill set, cwf, job level ซึ่งไฟล์นี้ถูกเรียกใน "2_jobpost_management.ipynb"
+
+"result_extract_all.json" = ไฟล์ตัวอย่างผลลัพท์ขนาดเล็กที่รันได้จาก "1_job_post_extraction.ipynb" โดยสามารถใช้ไฟล์นี้เพื่อ run all "2_jobpost_management.ipynb" ได้เลย
