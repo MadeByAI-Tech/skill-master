@@ -1,5 +1,9 @@
-from flask import Flask
-from server.web  import router as  web_router # type: ignore
-# from pipeline.processing_job import extract
-app = Flask(__name__)
-app.register_blueprint(web_router)
+from fastapi import FastAPI
+from server.web  import router as  web_router
+app = FastAPI()
+
+# @app.get("/")
+# def read_root():
+#     return {"Hello": "World Na Ja"}
+
+app.include_router(web_router)

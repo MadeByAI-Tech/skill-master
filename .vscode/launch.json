@@ -5,42 +5,34 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Function Framework",
+            "name": "(Dev) FastAPI",
             "type": "debugpy",
             "request": "launch",
-            "module": "functions_framework",
+            "module": "uvicorn",
             "args": [
-                "--target",
-                "main",
-                "--host",
-                "0.0.0.0",
-                "--port",
-                "8000",
-                "--debug",
-
+                "server:app",
+                "--reload",
+                "--host=0.0.0.0",
+                "--port=8000"
             ],
+            "envFile": "${workspaceFolder}/.envfiles/dev.env",
             "cwd": "${workspaceFolder}/src",
-            "envFile": "${workspaceFolder}/.envfiles/dev.env"
+            "jinja": true
         },
         {
-            "name": "Python Debugger: Flask",
+            "name": "(STG) FastAPI",
             "type": "debugpy",
             "request": "launch",
-            "module": "flask",
-            "env": {
-                "FLASK_APP": "src/server/__init__.py",
-                "FLASK_DEBUG": "1",
-                "FLASK_RUN_HOST": "0.0.0.0",
-                "FLASK_RUN_PORT": "8000"
-            },
+            "module": "uvicorn",
             "args": [
-                "run",
-                "--no-debugger",
-                "--no-reload"
+                "server:app",
+                "--reload",
+                "--host=0.0.0.0",
+                "--port=8000"
             ],
-            "jinja": true,
-            "envFile": "${workspaceFolder}/.envfiles/dev.env",
-            "autoStartBrowser": false
+            "envFile": "${workspaceFolder}/.envfiles/staging.env",
+            "cwd": "${workspaceFolder}/src",
+            "jinja": true
         }
     ]
 }
