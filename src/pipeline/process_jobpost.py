@@ -1,8 +1,8 @@
-from pipeline.extract_all_components import extract_all_components
+from pipeline.function.extract_all_components import extract_all_components
 from db import get_client, get_dataset
 from google.cloud import bigquery
 
-def job_post_extraction_pipeline():
+def run():
     """
     Pipeline to transform raw JobPosts into `JobPostExtracted` records
         - Fetches rows from the `JobPosts` table
