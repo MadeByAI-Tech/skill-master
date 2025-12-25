@@ -33,6 +33,14 @@
             "envFile": "${workspaceFolder}/.envfiles/staging.env",
             "cwd": "${workspaceFolder}/src",
             "jinja": true
-        }
+        },
+        {
+            "name": "(Dev) Python Debugger",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "envFile": "${workspaceFolder}/.envfiles/dev.env",
+            "console": "integratedTerminal"
+        },
     ]
 }

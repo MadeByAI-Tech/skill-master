@@ -1,4 +1,4 @@
-from openai import OpenAI
+from openai import OpenAI, AsyncOpenAI
 from openai.types.chat import ChatCompletion, ChatCompletionMessageParam
 from typing import Iterable
 import os
@@ -12,10 +12,19 @@ if os.environ.get("MODE") == "dev":
         os.environ["OPENAI_API_KEY"] = f.read().strip()
 
 MODEL:str = os.environ["OPENAI_MODEL"]
-_client = OpenAI()
 
 def chat(messages:Iterable[ChatCompletionMessageParam]) -> ChatCompletion:
+    _client = OpenAI()
     resp = _client.chat.completions.create(
+        model=MODEL,
+        temperature=0.0,
+        messages=messages
+    )
+    return resp
+
+async def async_chat(messages:Iterable[ChatCompletionMessageParam]) -> ChatCompletion:
+    _client = AsyncOpenAI()
+    resp = await _client.chat.completions.create(
         model=MODEL,
         temperature=0.0,
         messages=messages
