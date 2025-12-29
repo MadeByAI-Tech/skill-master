@@ -1,7 +1,7 @@
 import json
 import re
 from typing import Any
-from pipeline.var import MASTER_SYSTEM_PROMPT
+from pipeline.phase1.function.var import MASTER_SYSTEM_PROMPT
 from llm import chat
 
 def extract_all_components(

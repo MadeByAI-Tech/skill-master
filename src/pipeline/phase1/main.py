@@ -1,6 +1,28 @@
-from pipeline.function.extract_all_components import extract_all_components
+from pipeline.phase1.function.extract_all_components import extract_all_components
 from db import get_client, get_dataset
 from google.cloud import bigquery
+
+"""
+Pseudo code
+
+jobposts = JobPost.fetch_all()
+
+preprocessed_jobposts = []
+
+for JobPost in JobPosts:
+    preprocessed_jobposts.append(preprocessing(JobPost))
+
+extracted_jobposts = []
+
+for JobPost in preprocessed_jobposts:
+    extracted_jobposts.append(extraction(JobPost))
+
+postporoocessed_jobposts = []
+
+for JobPost in preprocessed_jobposts:
+    postporoocessed_jobposts.append(postprocessing(JobPost))
+"""
+
 
 def run():
     """
